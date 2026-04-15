@@ -5,7 +5,11 @@ from typing import Iterable
 
 import cv2  # type: ignore
 import numpy as np  # type: ignore
-import pygame  # type: ignore
+
+try:
+    import pygame  # type: ignore
+except Exception:
+    pygame = None
 
 
 def estimate_distance(bbox_width, known_width, focal_length):
@@ -20,6 +24,9 @@ def estimate_distance(bbox_width, known_width, focal_length):
 
 def play_alarm_sound(alarm_type="Beep"):
     """Generate and play an alarm sound."""
+    if pygame is None:
+        return
+
     try:
         frequency_map = {
             "Beep": 1000,

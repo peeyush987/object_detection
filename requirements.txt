@@ -2,4 +2,3 @@ streamlit
 opencv-python-headless
 ultralytics
 numpy
-pygame

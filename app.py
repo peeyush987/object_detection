@@ -3,7 +3,6 @@ import time
 
 import cv2
 import numpy as np
-import pygame
 import streamlit as st
 from ultralytics import YOLO
 
@@ -28,7 +27,16 @@ from utils import (
     summarize_detected_classes,
 )
 
-pygame.mixer.init()
+try:
+    import pygame
+except Exception:
+    pygame = None
+
+if pygame is not None:
+    try:
+        pygame.mixer.init()
+    except Exception:
+        pygame = None
 
 st.set_page_config(
     page_title="AI Object Detection System",
